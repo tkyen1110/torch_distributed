@@ -1,5 +1,8 @@
 """
 https://pytorch.org/tutorials/intermediate/ddp_tutorial.html
+https://pytorch.org/docs/stable/elastic/run.html
+https://pytorch.org/docs/stable/elastic/quickstart.html
+https://pytorch.org/docs/stable/elastic/train_script.html
 """
 import os
 import torch
@@ -92,7 +95,7 @@ def demo_basic_elastic():
     print(f"Finished running basic DDP example on rank {rank}.")
 
 if __name__ == "__main__":
-    # Option 1 : python 02_elastic_distributed_data_parallel.py
+    # Option 1 : python 02_elastic_ddp.py
     # n_gpus = torch.cuda.device_count()
     # assert n_gpus >= 2, f"Requires at least 2 GPUs to run, but got {n_gpus}"
     # world_size = n_gpus
@@ -100,6 +103,6 @@ if __name__ == "__main__":
 
     # Option 2 :
     # export MASTER_ADDR=$(scontrol show hostname ${SLURM_NODELIST} | head -n 1)
-    # torchrun --nnodes=1 --nproc_per_node=2 --rdzv_id=100 --rdzv_backend=c10d --rdzv_endpoint=$MASTER_ADDR:29400 02_elastic_distributed_data_parallel.py
-    # torchrun --nnodes=1 --nproc_per_node=2 02_elastic_distributed_data_parallel.py
+    # torchrun --nnodes=1 --nproc_per_node=2 --rdzv_id=100 --rdzv_backend=c10d --rdzv_endpoint=$MASTER_ADDR:29400 02_elastic_ddp.py
+    # torchrun --nnodes=1 --nproc_per_node=2 02_elastic_ddp.py
     demo_basic_elastic()
